@@ -17,7 +17,11 @@
     <v-row>
       <v-col cols="9">
         <div v-if="cart.length > 0" v-for="product in cart" :key="product.id">
-          <CardSmallProductComponent class="mb-2" :product="product" />
+          <CardSmallProductComponent
+            class="mb-2"
+            :product="product"
+            editable="true"
+          />
         </div>
 
         <div v-if="cart.length == 0">
@@ -49,6 +53,7 @@
           dense
           color="red darken-3"
           :disabled="cart.length == 0"
+          @click="goToPay()"
           >Proceder al pago</v-btn
         >
       </v-col>
@@ -79,9 +84,16 @@ export default {
       return this.cart.reduce((acc, val) => acc + val.price * val.selected, 0);
     },
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
   methods: {
     cleanCart() {
       this.$store.dispatch("cart/cleanCart");
+    },
+
+    goToPay() {
+      this.$router.push({ name: "Purchase" });
     },
   },
 };

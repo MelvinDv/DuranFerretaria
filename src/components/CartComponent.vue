@@ -18,7 +18,11 @@
 
       <div v-if="cart.length > 0">
         <div v-for="product in cart" :key="product.id">
-          <CardSmallProductComponent class="mb-2" :product="product" />
+          <CardSmallProductComponent
+            class="mb-2"
+            :product="product"
+            editable="true"
+          />
         </div>
 
         <div class="my-2 d-flex align-center justify-space-between">
@@ -44,6 +48,7 @@
           depressed
           dense
           color="red darken-3"
+          @click="goToCart()"
           >Proceder al pago</v-btn
         >
 
@@ -94,6 +99,12 @@ export default {
   methods: {
     cleanCart() {
       this.$store.dispatch("cart/cleanCart");
+    },
+
+    goToCart() {
+      if (this.$route.name !== "PurchaseSummary") {
+        this.$router.push({ name: "PurchaseSummary" });
+      }
     },
   },
 };

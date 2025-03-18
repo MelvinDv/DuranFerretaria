@@ -3,10 +3,8 @@
     <v-text-field
       label="Nombre Completo"
       outlined
-      solo
       flat
       color="red"
-      background-color="#f1f1f1"
     ></v-text-field>
 
     <v-row>
@@ -92,8 +90,4 @@ export default {
 };
 </script>
 
-<style>
-.v-input.v-input--outlined .v-input__control {
-  border-color: green !important;
-}
-</style>
+<style></style>
